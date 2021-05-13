@@ -1,26 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import Users from "./src/components/Users";
-import {createStackNavigator} from "@react-navigation/stack";
+import {StyleSheet} from 'react-native';
 import {NavigationContainer} from "@react-navigation/native";
-import User from "./src/components/User";
-import UserDetails from "./src/components/UserDetails";
-import Posts from "./src/components/Posts";
-import PostDetail from "./src/components/PostDetail";
+import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 
-const StackNavigator = createStackNavigator();
+import Users from "./src/components/Users";
+import Posts from "./src/components/Posts";
+import PostDrawer from "./src/components/PostDrawer";
+
+// const StackNavigator = createStackNavigator(); //потрібен для того, щоб переходити від цілого списку до конкретного
+ const BottomTabNavigator = createBottomTabNavigator();
 
 export default function App() {
   return (
-   <NavigationContainer>
-       <StackNavigator.Navigator>
-           {/*<StackNavigator.Screen name={'Users'} component={Users}/>*/}
-           {/*<StackNavigator.Screen name={'UserDetails'} component={UserDetails}/>*/}
-           <StackNavigator.Screen name={'Posts'} component={Posts}/>
-           <StackNavigator.Screen name={'Post Details'} component={PostDetail}/>
-       </StackNavigator.Navigator>
-   </NavigationContainer>
+
+ <NavigationContainer>
+     <BottomTabNavigator.Navigator tabBarOptions={{tabStyle: {justifyContent: 'center', alignItems: 'center', size: 25}}}>
+         <BottomTabNavigator.Screen name={'users'} component={Users}/>
+         <BottomTabNavigator.Screen name={'posts'} component={PostDrawer}/>
+     </BottomTabNavigator.Navigator>
+
+ </NavigationContainer>
   );
 }
 
